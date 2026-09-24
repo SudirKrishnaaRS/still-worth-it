@@ -23,10 +23,15 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
-      - uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0
+      # Installs pnpm first (reading its version from package.json's
+      # "packageManager" field — currently pnpm@10.30.1), so it's already on
+      # PATH when setup-node's `cache: pnpm` shells out to `pnpm store path`.
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v7
         with:
-          runtime: node@22
-          cache: true
+          node-version-file: ".nvmrc"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - run: pnpm lint
 
   typecheck:
@@ -35,10 +40,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
-      - uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v7
         with:
-          runtime: node@22
-          cache: true
+          node-version-file: ".nvmrc"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
 
   test:
@@ -47,10 +54,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
-      - uses: pnpm/setup@c9883cc79df532ad1a7b81bf9ab944ceb090d65c # v2.0.0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v7
         with:
-          runtime: node@22
-          cache: true
+          node-version-file: ".nvmrc"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - run: pnpm test
 
   secrets:
