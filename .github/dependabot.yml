@@ -1,0 +1,22 @@
+version: 2
+updates:
+  # App dependencies (Dependabot's "npm" ecosystem also drives pnpm-lock.yaml).
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # Bundle routine version bumps into one PR instead of dozens; security
+      # patches still get their own separate, immediate PR regardless of this.
+      dependencies:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 10
+
+  # Keeps the pinned action versions in our own workflow files current —
+  # exactly the kind of update that would have caught gitleaks-action@v2's
+  # deprecation automatically, instead of us having to notice it by hand.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
