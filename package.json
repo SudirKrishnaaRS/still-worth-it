@@ -2,6 +2,7 @@
   "name": "still-worth-it",
   "version": "0.1.0",
   "private": true,
+  "author": "Sudir Krishnaa RS (https://github.com/SudirKrishnaaRS)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

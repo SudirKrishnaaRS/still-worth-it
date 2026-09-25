@@ -74,6 +74,10 @@ This is a solo learning project, but PRs follow a couple of conventions:
 - **PR titles** must start with `feature:`, `bug:`, `chore:`, `docs:`, or `ci:`, followed by a short description - e.g. `feature: add currency picker`.
 - Dependencies (including GitHub Actions versions) are kept current via [Dependabot](.github/dependabot.yml).
 
+## Author
+
+**Sudir Krishnaa RS** - [@SudirKrishnaaRS](https://github.com/SudirKrishnaaRS)
+
 ## License
 
 No license has been chosen yet - all rights reserved by default until one is added.
