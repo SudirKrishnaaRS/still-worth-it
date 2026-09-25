@@ -1,3 +1,12 @@
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+
+# Supply-chain hardening: refuse to install a package version published less
+# than 7 days ago (10080 minutes). Most malicious/compromised npm versions
+# are detected and pulled within days of publishing - this window means a
+# fresh supply-chain attack is very unlikely to still be resolvable by the
+# time we'd install it. Not "strict" - if the only version matching a
+# semver range is too new, pnpm falls back to the newest older version that
+# satisfies both the range and this age, instead of failing the install.
+minimumReleaseAge: 10080

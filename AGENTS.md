@@ -49,6 +49,8 @@ pnpm build
 pnpm format:check
 ```
 
+**How to run them**: to keep the main agent's token usage down, delegate the actual running of these checks to lightweight subagents (e.g. Haiku) instead of running them directly in the main conversation. Fan them out in parallel - one subagent per check - and have each one report back only pass/fail plus a short summary of the failure, not full raw command output. The main agent only steps in to read code and fix something when a subagent reports a failure; a passing check needs no further attention.
+
 ## Quality bar
 
 - A change is not done until `pnpm typecheck`, `pnpm test`, and `pnpm build` all pass - not just lint.
@@ -61,6 +63,7 @@ pnpm format:check
 - Do not use em dashes (—) anywhere in this codebase or its docs - use hyphens (-) instead.
 - Do not assume requirements or intent - ask a clarifying question whenever something is ambiguous, rather than guessing.
 - Never commit anything to git unless explicitly asked.
+- Require a minimum release age of 7 days before installing a new npm package version, as a supply-chain safeguard - most compromised releases are caught and pulled within days of publishing. Configure this via the package manager (e.g. `minimumReleaseAge: 10080` in `pnpm-workspace.yaml` for pnpm; use the equivalent setting for npm/yarn on a different project).
 - Whenever a new feature is implemented, create or update `docs/feature-list.md` - one `## Feature Title` heading per feature, with its details as bullet points underneath.
 
 ## Accessibility, performance & SEO checklist
@@ -110,6 +113,7 @@ pnpm format:check
 - `packageManager` in `package.json` pins an exact pnpm version. `pnpm/setup@v2` in CI only supports pnpm v11+; this project is still on pnpm 10.x, so CI uses `pnpm/action-setup@v4` + `actions/setup-node@v7` instead.
 - Next.js 16 uses Turbopack for `next build` by default, not just `next dev`.
 - GitHub Pages serves this app from a subpath (`basePath`/`assetPrefix: "/still-worth-it"` in `next.config.ts`), and `public/.nojekyll` is required, or GitHub Pages' Jekyll processing silently drops the `_next/` folder.
+- `minimumReleaseAge` in `pnpm-workspace.yaml` only blocks fresh dependency _resolution_ (`pnpm add`/`update`/`dedupe`, or an out-of-sync lockfile) - it does not affect `pnpm install --frozen-lockfile` (what CI runs), which just installs whatever the lockfile already pins. If a `pnpm add`/`dedupe` fails citing this setting on a package you didn't touch, it's usually because an unrelated already-pinned dependency (e.g. `next` itself, or one of its platform-specific optional dependencies) is younger than 7 days - wait for it to age, or temporarily set `minimumReleaseAge: 0` to finish the operation, then restore it to `10080`.
 
 ## Where to look next
 

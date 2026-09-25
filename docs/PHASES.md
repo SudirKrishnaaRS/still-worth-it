@@ -34,3 +34,13 @@ What each phase (= one merged PR) actually shipped. Updated as new PRs merge.
 - Gitleaks secret scanning
 - Dependabot for dependencies + Actions versions
 - Node version pinned via `.nvmrc`
+
+## Phase 4 - Core reusable UI primitives [#17](https://github.com/SudirKrishnaaRS/still-worth-it/pull/17)
+
+_(This is "Phase 3" in `docs/IMPLEMENTATION_PLAN.md`'s roadmap - the CI/CD work above landed early out of order and had already claimed the "Phase 3" label here, so this log now counts by merge order instead.)_
+
+- `Button`, `Chip`, `CurrencyInput`, `Select` - accessible primitives (real `<button>`/`<label>`, `aria-pressed`, hidden-label pattern)
+- Variants named `primary` / `secondary` / `link`
+- `cn()` helper (clsx + tailwind-merge) for merging/overriding Tailwind classes
+- Dev-friendly JSDoc + a usage example on every component
+- `minimumReleaseAge: 10080` in `pnpm-workspace.yaml` - 7-day supply-chain safeguard on new package versions
