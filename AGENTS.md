@@ -49,6 +49,8 @@ pnpm build
 pnpm format:check
 ```
 
+**How to run them**: to keep the main agent's token usage down, delegate the actual running of these checks to lightweight subagents (e.g. Haiku) instead of running them directly in the main conversation. Fan them out in parallel - one subagent per check - and have each one report back only pass/fail plus a short summary of the failure, not full raw command output. The main agent only steps in to read code and fix something when a subagent reports a failure; a passing check needs no further attention.
+
 ## Quality bar
 
 - A change is not done until `pnpm typecheck`, `pnpm test`, and `pnpm build` all pass - not just lint.
