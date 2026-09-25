@@ -16,6 +16,6 @@ describe("cn", () => {
   });
 
   it("resolves conflicting Tailwind utilities so the last one wins", () => {
-    expect(cn("bg-cta", "bg-red-500")).toBe("bg-red-500");
+    expect(cn("bg-primary", "bg-red-500")).toBe("bg-red-500");
   });
 });

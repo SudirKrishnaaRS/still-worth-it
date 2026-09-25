@@ -13,8 +13,8 @@
   --muted: #6b6b6b;
   --line: rgb(10 10 10 / 0.13);
   --accent: #6536eb;
-  --cta: #262626;
-  --cta-fg: #ffffff;
+  --primary: #262626;
+  --primary-fg: #ffffff;
 }
 
 .dark {
@@ -24,13 +24,13 @@
   --muted: #928e88;
   --line: rgb(245 244 242 / 0.16);
   --accent: #f5c15a;
-  --cta: #f5f4f2;
-  --cta-fg: #0b0b0c;
+  --primary: #f5f4f2;
+  --primary-fg: #0b0b0c;
 }
 
 /* Wire the runtime-switchable variables above into Tailwind's theme so
    utilities like bg-canvas / text-ink / border-line exist. Deliberately
-   plain @theme, not "@theme inline" — inline bakes the current value in at
+   plain @theme, not "@theme inline" - inline bakes the current value in at
    build time, which would break switching themes at runtime. */
 @theme {
   --color-canvas: var(--canvas);
@@ -39,8 +39,8 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
-  --color-cta: var(--cta);
-  --color-cta-fg: var(--cta-fg);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
 
   --font-sans: var(--font-inter);
   --font-display: var(--font-jakarta);
