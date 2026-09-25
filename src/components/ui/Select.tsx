@@ -15,6 +15,22 @@ type SelectProps = {
   options: SelectOption[];
 } & Omit<ComponentPropsWithoutRef<"select">, "children">;
 
+/**
+ * A dropdown built from a plain list of options. Same hidden-label pattern
+ * as CurrencyInput - accessible name via the label prop, no visible text
+ * unless you add your own next to it.
+ *
+ * @example
+ * <Select
+ *   label="Currency"
+ *   options={[
+ *     { value: "USD", label: "$ USD" },
+ *     { value: "EUR", label: "€ EUR" },
+ *   ]}
+ *   value={currency}
+ *   onChange={(e) => setCurrency(e.target.value)}
+ * />
+ */
 export function Select({ label, options, id, className, ...props }: SelectProps) {
   const generatedId = useId();
   const selectId = id ?? generatedId;

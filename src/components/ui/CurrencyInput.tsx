@@ -11,6 +11,19 @@ type CurrencyInputProps = {
   currencySymbol: string;
 } & Omit<ComponentPropsWithoutRef<"input">, "type">;
 
+/**
+ * A number input with a currency symbol shown next to it (e.g. "$"). The
+ * label is only for screen readers - it's hidden visually, so pair this
+ * with your own visible heading/copy around it.
+ *
+ * @example
+ * <CurrencyInput
+ *   label="Hourly wage"
+ *   currencySymbol="$"
+ *   value={wage}
+ *   onChange={(e) => setWage(e.target.value)}
+ * />
+ */
 export function CurrencyInput({
   label,
   currencySymbol,
