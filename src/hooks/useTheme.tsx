@@ -1,11 +1,10 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { THEME_STORAGE_KEY } from "@/lib/constants";
 import { useLocalStorage } from "./useLocalStorage";
 
 export type Theme = "light" | "dark";
-
-export const THEME_STORAGE_KEY = "swi-theme";
 
 /**
  * Sets the `.dark` class on `<html>` synchronously, before React hydrates
