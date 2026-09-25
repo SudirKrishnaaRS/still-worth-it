@@ -13,7 +13,7 @@ A tool that converts a price into hours of your life, based on your hourly wage 
 
 ## Status
 
-🚧 **Work in progress.** This is being built in small, ordered phases (see [docs/PHASES.md](docs/PHASES.md) for exactly what each one shipped). The live site currently reflects an early phase - a bare placeholder page with a working light/dark theme toggle - not the finished product yet.
+🚧 **Work in progress.** This is being built in small, ordered phases, following the [implementation plan](docs/IMPLEMENTATION_PLAN.md) (see [docs/PHASES.md](docs/PHASES.md) for exactly what each one shipped). The live site currently reflects an early phase - a bare placeholder page with a working light/dark theme toggle - not the finished product yet.
 
 ## Tech stack
 
