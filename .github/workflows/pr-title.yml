@@ -3,8 +3,8 @@ name: PR Title
 # Deliberately its own file: this needs pull_request_target, not the plain
 # pull_request trigger the other workflows use. pull_request_target runs
 # with the workflow file from main (not the PR branch) and only reads PR
-# metadata via the API — it never checks out or executes the PR's own code
-# — so a PR can't tamper with this check by editing the workflow itself.
+# metadata via the API - it never checks out or executes the PR's own code
+# - so a PR can't tamper with this check by editing the workflow itself.
 # `synchronize` is included (even though a new commit rarely changes the
 # title) because a required status check needs a run recorded against
 # every commit SHA, not just the one from when the PR was opened.
@@ -35,5 +35,10 @@ jobs:
           # Require an actual description after the colon, not just whitespace.
           subjectPattern: ^(?!\s*$).+$
           subjectPatternError: |
-            The description in "{title}" can't be empty after the "type: " prefix —
+            The description in "{title}" can't be empty after the "type: " prefix -
             e.g. "feature: add dark mode toggle" or "bug: fix theme flicker on reload".
+          # Dependabot's own titles ("Bump x from 4 to 6") don't follow our
+          # convention and never will - it always applies this label, so
+          # skip validation for its PRs instead of permanently blocking them.
+          ignoreLabels: |
+            dependencies
