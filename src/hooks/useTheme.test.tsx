@@ -1,7 +1,8 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { THEME_STORAGE_KEY, ThemeProvider, useTheme } from "./useTheme";
+import { THEME_STORAGE_KEY } from "@/lib/constants";
+import { ThemeProvider, useTheme } from "./useTheme";
 
 function mockSystemPreference(prefersDark: boolean) {
   vi.spyOn(window, "matchMedia").mockImplementation(
